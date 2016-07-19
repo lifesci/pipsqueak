@@ -14,5 +14,5 @@ rule token = parse
 	| space { token lexbuf }
 	| int as lxm { INT (int_of_string (lxm)) }
 	| float as lxm { FLOAT (float_of_string (lxm)) }
-	| eof { raise Eof }
+	| eof { EOF }
 	| _ as other { raise (SyntaxError other) }
