@@ -1,11 +1,8 @@
 run:
-	ocamllex lexsqueak.mll
-	ocamlyacc parsesqueak.mly
-	ocamlc -c parsesqueak.mli
-	ocamlc -c lexsqueak.ml
-	ocamlc -c parsesqueak.ml
-	ocamlfind ocamlc -linkpkg -thread -package core -c main.ml
-	ocamlfind ocamlc -linkpkg -thread -package core -o pipsqueak lexsqueak.cmo parsesqueak.cmo main.cmo
+	ocamlbuild -use-ocamlfind lexsqueak.cmo parsesqueak.cmo
+	corebuild -use-ocamlfind main.cmo
+	corebuild -use-ocamlfind main.native
+	mv main.native pipsqueak
 
 clean:
-	rm pipsqueak lexsqueak.ml parsesqueak.ml *.cmi *.cmo *.mli
+	rm pipsqueak lexsqueak.ml parsesqueak.ml *.cmi *.cmo *.mli _build/*

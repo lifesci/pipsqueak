@@ -1,24 +1,29 @@
+%{
+	open Node
+%}
 
 %token <int> INT
 %token <float> FLOAT
 %token EOF
 
 %start prog
-%type <int> prog
+%type <Node.node> prog
+
 %%
 
 prog:
-	num_list { 1 }
+	num_list { $1 }
+	| /* epsilon */ { new Node.node Empty Empty }
 	;
 
 num_list:
-	num { $1 }
-	| num num_list { $1 }
+	num { new Node.node Empty $1 }
+	| num num_list { new Node.node $2 $1 }
 	;
 
 num:
-	FLOAT { print_float $1; int_of_float $1 }
-	| INT { print_int $1; $1 }
+	INT { Int_lit $1 }
+	| FLOAT { Float_lit $1 }
 	;
 
 %%
