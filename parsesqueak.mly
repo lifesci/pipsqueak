@@ -7,18 +7,18 @@
 %token EOF
 
 %start prog
-%type <Node.node> prog
+%type <Node.node option> prog
 
 %%
 
 prog:
 	num_list { $1 }
-	| EOF { new Node.node Empty Empty }
+	| EOF { None }
 	;
 
 num_list:
-	num { new Node.node $1 (new Node.node Empty Empty) }
-	| num num_list { new Node.node $1 $2 }
+	num { Some (new Node.node $1 None) }
+	| num num_list { Some (new Node.node $1 $2) }
 	;
 
 num:

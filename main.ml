@@ -16,4 +16,6 @@ let loop filename =
 				x;;
 
 let ast = loop Sys.argv.(1) in
-	ast#print
+	match ast with
+		None -> ()
+		| Some n -> n#print

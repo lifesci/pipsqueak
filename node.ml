@@ -9,8 +9,14 @@ class node input child =
 	object (self)
 		val mutable contents = input
 		val mutable next = child
+
+		method print_contents = match contents with
+		Int_lit x -> Printf.printf "%i\n" x
+		| Float_lit x -> Printf.printf "%f\n" x
+		| String_lit x -> Printf.printf "%s\n" x
+		| Empty -> ()
+
 		method print = match next with
-			| Empty -> self#print_contents;
-			| _ -> self#print_contents; next#print;
-		method print_contents = print_string "here"
+		| None -> self#print_contents
+		| Some x -> self#print_contents; x#print
 	end;;
