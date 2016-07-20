@@ -5,8 +5,8 @@ open Node
 
 let parse lexbuf =
 	try Parsesqueak.prog Lexsqueak.token lexbuf with
-	| SyntaxError msg ->
-		print_string "syntax error\n"; exit 0
+	SyntaxError msg ->
+		print_string msg; exit 0
 		
 let loop filename =
 	let inx = In_channel.create filename in

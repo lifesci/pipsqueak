@@ -5,4 +5,4 @@ run:
 	mv main.native pipsqueak
 
 clean:
-	rm pipsqueak lexsqueak.ml parsesqueak.ml *.cmi *.cmo *.mli _build/*
+	rm pipsqueak _build/*

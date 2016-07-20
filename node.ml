@@ -17,6 +17,6 @@ class node input child =
 		| Empty -> ()
 
 		method print = match next with
-		| None -> self#print_contents
+		None -> self#print_contents
 		| Some x -> self#print_contents; x#print
 	end;;

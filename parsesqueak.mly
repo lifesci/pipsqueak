@@ -2,8 +2,12 @@
 	open Node
 %}
 
-%token <int> INT
-%token <float> FLOAT
+%token <int> INT_LIT
+%token <float> FLOAT_LIT
+%token L_SQUARE
+%token R_SQUARE
+%token L_PAREN
+%token R_PAREN
 %token EOF
 
 %start prog
@@ -22,8 +26,8 @@ num_list:
 	;
 
 num:
-	INT { Int_lit $1 }
-	| FLOAT { Float_lit $1 }
+	INT_LIT { Int_lit $1 }
+	| FLOAT_LIT { Float_lit $1 }
 	;
 
 %%
